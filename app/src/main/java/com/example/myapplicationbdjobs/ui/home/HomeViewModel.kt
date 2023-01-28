@@ -49,6 +49,22 @@ class HomeViewModel @Inject constructor(private val appRepository: AppRepository
         }
     }
 
-
-
+    /* fun callNowShowingMovies() {
+       viewModelScope.launch {
+           when (val response =repository.getNowSHowingMovies) {
+               is NetworkResponse.Success -> {
+                   _nowShowingLiveData.value = response.body
+               }
+               is NetworkResponse.ServerError -> {
+                   _errorLiveData.value = response.body?.statusMessage?:"Something wnt wrong"
+               }
+               is NetworkResponse.NetworkError -> {
+                   _errorLiveData.value = "No Internet"
+               }
+               is NetworkResponse.UnknownError -> {
+                   _errorLiveData.value = "Something wnt wrong"
+               }
+           }
+       }
+   }*/
 }

@@ -1,9 +1,9 @@
 package com.example.myapplicationbdjobs.di
 
 import android.content.Context
-import android.provider.SyncStateContract
 import androidx.viewbinding.BuildConfig
 import com.example.myapplicationbdjobs.api.endpoints.ApiService
+import com.example.myapplicationbdjobs.helper.Constants
 import com.example.myapplicationbdjobs.preference.PreferencesHelper
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import dagger.Module
@@ -58,8 +58,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            //.baseUrl(SyncStateContract.Constants.BASE_URL) //base url
-            .baseUrl("")
+            .baseUrl(Constants.BASE_URL.trim()) //base url
             .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
