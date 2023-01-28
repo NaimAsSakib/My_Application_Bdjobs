@@ -1,63 +1,63 @@
 package com.example.myapplicationbdjobs.api.models
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class PopularResponse(
 
-	@field:SerializedName("page")
+	@Json(name="page")
 	val page: Int? = null,
 
-	@field:SerializedName("total_pages")
+	@Json(name="total_pages")
 	val totalPages: Int? = null,
 
-	@field:SerializedName("results")
-	val results: List<ResultsItem?>? = null,
+	@Json(name="results")
+	val results: List<ResultsItem>? = null,
 
-	@field:SerializedName("total_results")
+	@Json(name="total_results")
 	val totalResults: Int? = null
 )
 
 data class ResultsItem(
 
-	@field:SerializedName("overview")
+	@Json(name="overview")
 	val overview: String? = null,
 
-	@field:SerializedName("original_language")
+	@field:Json(name="original_language")
 	val originalLanguage: String? = null,
 
-	@field:SerializedName("original_title")
+	@field:Json(name="original_title")
 	val originalTitle: String? = null,
 
-	@field:SerializedName("video")
+	@Json(name="video")
 	val video: Boolean? = null,
 
-	@field:SerializedName("title")
+	@Json(name="title")
 	val title: String? = null,
 
-	@field:SerializedName("genre_ids")
+	@Json(name="genre_ids")
 	val genreIds: List<Int?>? = null,
 
-	@field:SerializedName("poster_path")
+	@field:Json(name="poster_path")
 	val posterPath: String? = null,
 
-	@field:SerializedName("backdrop_path")
+	@field:Json(name="backdrop_path")
 	val backdropPath: String? = null,
 
-	@field:SerializedName("release_date")
+	@Json(name="release_date")
 	val releaseDate: String? = null,
 
-	@field:SerializedName("popularity")
+	@Json(name="popularity")
 	val popularity: Any? = null,
 
-	@field:SerializedName("vote_average")
+	@field:Json(name="vote_average")
 	val voteAverage: Any? = null,
 
-	@field:SerializedName("id")
+	@Json(name="id")
 	val id: Int? = null,
 
-	@field:SerializedName("adult")
+	@Json(name="adult")
 	val adult: Boolean? = null,
 
-	@field:SerializedName("vote_count")
+	@field:Json(name="vote_count")
 	val voteCount: Int? = null
 )

@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationbdjobs.R
+import com.example.myapplicationbdjobs.api.models.ResultsItem
 import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
 import com.example.myapplicationbdjobs.ui.MainActivity
 import com.google.gson.Gson
@@ -32,6 +34,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.btnHomeFrag.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
         }
@@ -44,7 +47,9 @@ class HomeFragment : Fragment() {
         viewModel.popularMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
                 Log.e("msg ","data "+data)
-                Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
+               // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
+                val programAdapter=  HomePopularRCVAdapter(it.results as ArrayList<ResultsItem>)
+                binding.rcvVerticalHomeFragment.adapter=programAdapter
             }
         }
 
