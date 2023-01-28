@@ -6,15 +6,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/tvHomeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Press to go"
+        android:id="@+id/tvNowShowing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:text="Now Showing"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvHorizontalHomeFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        tools:listitem="@layout/custom_horizontal_rcv_home_fragment"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvNowShowing"
+        app:layout_constraintStart_toStartOf="@id/tvNowShowing"/>
+
+    <TextView
+        android:id="@+id/tvPopular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:text="Popular"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/rcvHorizontalHomeFragment"
+        app:layout_constraintStart_toStartOf="@id/tvNowShowing"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvVerticalHomeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        tools:listitem="@layout/custom_horizontal_rcv_home_fragment"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tvPopular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/rcvHorizontalHomeFragment"/>
+
+    <Button
+        android:id="@+id/btnHomeFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Details Fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

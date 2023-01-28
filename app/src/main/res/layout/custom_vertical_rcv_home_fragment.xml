@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardVerticalHomeFrag">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivVerticalMoviePicHomeFrag"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/demo_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvVerticalMovieNameHomeFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Spiderman No way home"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/ivVerticalMoviePicHomeFrag"
+            app:layout_constraintTop_toTopOf="@id/ivVerticalMoviePicHomeFrag"/>
+
+        <ImageView
+            android:id="@+id/ivStar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/star"
+            app:layout_constraintStart_toStartOf="@id/tvVerticalMovieNameHomeFrag"
+            app:layout_constraintTop_toBottomOf="@id/tvVerticalMovieNameHomeFrag" />
+
+        <TextView
+            android:id="@+id/tvVerticalRatingHomeFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="9"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivStar"
+            app:layout_constraintStart_toEndOf="@id/ivStar"
+            app:layout_constraintTop_toTopOf="@id/ivStar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/ 10"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvVerticalRatingHomeFrag"
+            app:layout_constraintStart_toEndOf="@id/tvVerticalRatingHomeFrag"
+            app:layout_constraintTop_toTopOf="@id/tvVerticalRatingHomeFrag" />
+
+        <ImageView
+            android:id="@+id/ivMovieTime"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/ivStar"
+            app:layout_constraintStart_toStartOf="@id/ivStar"
+            android:src="@drawable/clock_movie_time"/>
+
+        <TextView
+            android:id="@+id/tvMovieTimeVerticalHomeFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:text="1 h"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/ivMovieTime"
+            app:layout_constraintStart_toEndOf="@id/ivMovieTime"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
