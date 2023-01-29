@@ -21,7 +21,7 @@
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
     <fragment
-        android:id="@+id/bookmarksFragment"
+        android:id="@+id/bookmarkFragment"
         android:name="com.example.myapplicationbdjobs.ui.bookmarks.BookmarksFragment"
         android:label="fragment_bookmarks"
         tools:layout="@layout/fragment_bookmarks" />
