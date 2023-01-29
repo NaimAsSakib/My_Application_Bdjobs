@@ -33,8 +33,12 @@ class HomePopularRCVAdapter(private val results: ArrayList<ResultsItem>) : Recyc
 
          val item= results[position]
 
+        val imageFirstPart="https://image.tmdb.org/t/p/w500"
+        val imageApiPart=item?.posterPath.toString()
+        val image= imageFirstPart.trim()+imageApiPart.trim()
+
          Glide.with(holder.movieImagePopular.context)
-             .load(item?.posterPath)
+             .load(image)
              .error(R.drawable.demo_movie)
              .into(holder.movieImagePopular)
 
