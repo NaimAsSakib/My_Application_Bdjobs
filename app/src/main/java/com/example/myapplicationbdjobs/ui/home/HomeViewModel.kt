@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplicationbdjobs.api.models.PopularResponse
+import com.example.myapplicationbdjobs.api.models.home.now_showing.NowShowingResponse
 import com.example.myapplicationbdjobs.repository.AppRepository
 import com.haroldadmin.cnradapter.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +23,8 @@ class HomeViewModel @Inject constructor(private val appRepository: AppRepository
     val errorLiveData: LiveData<String>
         get() = _errorLiveData
 
-    private val _nowShowingLiveData = MutableLiveData<PopularResponse?>()
-    val nowShowingMoviesLiveData: LiveData<PopularResponse?>
+    private val _nowShowingLiveData = MutableLiveData<NowShowingResponse?>()
+    val nowShowingMoviesLiveData: LiveData<NowShowingResponse?>
         get() = _nowShowingLiveData
 
     fun callPopularMovies(){
@@ -49,9 +50,11 @@ class HomeViewModel @Inject constructor(private val appRepository: AppRepository
         }
     }
 
-    /* fun callNowShowingMovies() {
+     fun callNowShowingMovies() {
        viewModelScope.launch {
-           when (val response =repository.getNowSHowingMovies) {
+           val response =appRepository.getNowShowingMovie()
+
+           when (response) {
                is NetworkResponse.Success -> {
                    _nowShowingLiveData.value = response.body
                }
@@ -66,5 +69,5 @@ class HomeViewModel @Inject constructor(private val appRepository: AppRepository
                }
            }
        }
-   }*/
+   }
 }

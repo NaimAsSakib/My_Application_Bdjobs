@@ -33,32 +33,38 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        navigation()
+    }
+
+    //navigation & RCV codes
+    private fun navigation(){
         binding.btnHomeFrag.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
         }
 
-
         viewModel.callPopularMovies()
-
-
 
         viewModel.popularMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
-                Log.e("msg ","data "+data)
                 //Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
                 val programAdapter= HomePopularRCVAdapter(it.results as ArrayList<ResultsItem>)
                 binding.rcvVerticalHomeFragment.adapter=programAdapter
             }
         }
 
-        viewModel.nowShowingMoviesLiveData.observe(viewLifecycleOwner){
-            //add adapter for vertical rcv
+        viewModel.callNowShowingMovies()
+        viewModel.nowShowingMoviesLiveData.observe(viewLifecycleOwner){data->
+            data?.let {
+                Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_SHORT).show()
+
+            }
         }
+
+
 
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             Toast.makeText(context,it, Toast.LENGTH_LONG).show()
         }
     }
-
 
 }

@@ -13,6 +13,7 @@ import com.example.myapplicationbdjobs.api.models.ResultsItem
 
 
 class HomePopularRCVAdapter(private val results: ArrayList<ResultsItem>) : RecyclerView.Adapter<HomePopularRCVAdapter.MyViewHolder>() {
+
     class MyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         val cardViewPopular: CardView = itemView.findViewById(R.id.cardVerticalHomeFrag)
         val movieImagePopular: ImageView = itemView.findViewById(R.id.ivVerticalMoviePicHomeFrag)

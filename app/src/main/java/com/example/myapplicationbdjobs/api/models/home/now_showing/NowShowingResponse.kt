@@ -67,9 +67,9 @@ data class ResultsItem(
 
 data class Dates(
 
-	@Json(name="maximum")
+	@field:Json(name="maximum")
 	val maximum: String? = null,
 
-	@Json(name="minimum")
+	@field:Json(name="minimum")
 	val minimum: String? = null
 )
