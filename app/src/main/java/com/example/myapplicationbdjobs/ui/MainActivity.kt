@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupDrawerLayout() {
         binding.navView.setupWithNavController(navController)
     }
-    fun openDrawer(){
+    fun openDrawer(){     //for opening drawer
         binding.drawerLayout.openDrawer(GravityCompat.START)
     }
 

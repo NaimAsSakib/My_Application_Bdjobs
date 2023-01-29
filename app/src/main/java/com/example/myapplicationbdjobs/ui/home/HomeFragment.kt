@@ -39,6 +39,12 @@ class HomeFragment : Fragment() {
 
     //navigation & RCV codes
     private fun navigation(){
+
+        //for opening drawer menu
+        binding.drawerIcon.setOnClickListener {
+            (activity as MainActivity).openDrawer()
+        }
+
         binding.btnHomeFrag.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
         }
