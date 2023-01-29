@@ -14,13 +14,13 @@ data class NowShowingResponse(
 	val totalPages: Int? = null,
 
 	@field:Json(name="results")
-	val results: List<ResultsItem?>? = null,
+	val results: List<ResultsItemNowShowing?>? = null,
 
 	@field:Json(name="total_results")
 	val totalResults: Int? = null
 )
 
-data class ResultsItem(
+data class ResultsItemNowShowing(
 
 	@field:Json(name="overview")
 	val overview: String? = null,

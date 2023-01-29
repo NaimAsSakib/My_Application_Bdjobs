@@ -43,8 +43,8 @@ class HomePopularRCVAdapter(private val results: ArrayList<ResultsItem>) : Recyc
              .error(R.drawable.demo_movie)
              .into(holder.movieImagePopular)
 
-         holder.tvMovieNamePopular.text= item?.originalTitle
-         holder.tvRatingPopular.text=item?.voteAverage.toString()
+         holder.tvMovieNamePopular.text= item.originalTitle
+         holder.tvRatingPopular.text=item.voteAverage.toString()
 
 
     }

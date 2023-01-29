@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.ResultsItem
+import com.example.myapplicationbdjobs.api.models.home.now_showing.ResultsItemNowShowing
 import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
 import com.example.myapplicationbdjobs.ui.MainActivity
 import com.google.gson.Gson
@@ -55,7 +56,9 @@ class HomeFragment : Fragment() {
         viewModel.callNowShowingMovies()
         viewModel.nowShowingMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
-                Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_SHORT).show()
+               // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_SHORT).show()
+                val programAdapterNowShowing= HomeNowShowingRCVAdapter(it.results as ArrayList<ResultsItemNowShowing>)
+                binding.rcvHorizontalHomeFragment.adapter=programAdapterNowShowing
 
             }
         }
