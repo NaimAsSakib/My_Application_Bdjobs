@@ -10,13 +10,12 @@
         android:id="@+id/ivMovieImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src=""/>
+        android:src="@drawable/demo_movie"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardMovieDetails"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/ivMovieImage"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -28,6 +27,7 @@
                 android:id="@+id/tvMovieName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="10dp"
                 android:textStyle="bold"
                 android:textSize="18sp"
