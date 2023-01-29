@@ -15,7 +15,6 @@ import com.example.myapplicationbdjobs.api.models.home.now_showing.ResultsItemNo
 class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<ResultsItemNowShowing> ) : RecyclerView.Adapter<HomeNowShowingRCVAdapter.MyViewHolder>() {
 
     class MyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
-       // val cardViewNowShowing: CardView = itemView.findViewById(R.id.cardHorizontalHomeFrag)
         val movieImageNowShowing: ImageView = itemView.findViewById(R.id.ivHorizontalMoviePicHomeFrag)
         val tvMovieNameNowShowing: TextView = itemView.findViewById(R.id.tvHorizontalMovieNameHomeFrag)
         val tvMovieRatingNowShowing: TextView = itemView.findViewById(R.id.tvHorizontalRatingHomeFrag)
