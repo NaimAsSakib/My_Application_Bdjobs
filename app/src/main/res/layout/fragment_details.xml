@@ -38,6 +38,16 @@
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <ImageView
+                android:id="@+id/ivSaveInBookmarks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:src="@drawable/baseline_bookmark_border_24"
+                app:layout_constraintTop_toTopOf="@id/tvMovieName"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <ImageView
                 android:id="@+id/ivStar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
