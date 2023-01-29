@@ -140,6 +140,28 @@
                 app:layout_constraintTop_toBottomOf="@id/tvRating"
                 app:layout_constraintStart_toStartOf="@id/tvRating"/>
 
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Description"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvLengthTime"
+                app:layout_constraintStart_toStartOf="@id/tvMovieName"/>
+
+            <TextView
+                android:id="@+id/descriptionDetailsMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:text="asdfghjklzxcvbnmertybghghghghghghghghg"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                app:layout_constraintStart_toStartOf="@id/tvMovieName"/>
+
 
 
 
