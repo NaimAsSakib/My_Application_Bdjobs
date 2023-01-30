@@ -52,7 +52,9 @@ class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<Results
 
         holder.constraintLayout.setOnClickListener {
             val movieIDFromApi= item.id
-            listener.onClickListener("movieID", movieIDFromApi)
+            if (movieIDFromApi != null) {
+                listener.onClickListener("movieID", movieIDFromApi)
+            }
 
         }
     }

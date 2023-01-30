@@ -18,11 +18,14 @@ import com.example.myapplicationbdjobs.listener.ItemOnClickListener
 import com.example.myapplicationbdjobs.ui.MainActivity
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() , ItemOnClickListener{
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
+
+    private var movieID=0   //for passing movie ID got from listener; initial value 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,9 +49,10 @@ class HomeFragment : Fragment() , ItemOnClickListener{
             (activity as MainActivity).openDrawer()
         }
 
-        binding.btnHomeFrag.setOnClickListener {
+
+        /*binding.btnHomeFrag.setOnClickListener {   //code to navigate to the defined fragment from navigation graph
             findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
-        }
+        }*/
 
         viewModel.callPopularMovies()
 
@@ -70,15 +74,15 @@ class HomeFragment : Fragment() , ItemOnClickListener{
             }
         }
 
-
-
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             Toast.makeText(context,it, Toast.LENGTH_LONG).show()
         }
     }
 
-    override fun onClickListener(name: String?, value: Int?) {
-        Log.e("listener", "value $value")
+    override fun onClickListener(name: String, value: Int) {
+        val bundle= Bundle()   //bundle
+        bundle.putInt("movieID",value)
+        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment,bundle)
     }
 
 }
