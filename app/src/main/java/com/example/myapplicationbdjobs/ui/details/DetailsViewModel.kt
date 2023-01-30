@@ -22,10 +22,10 @@ class DetailsViewModel @Inject constructor(private val appRepository: AppReposit
     val errorLiveData: LiveData<String>
         get() = _errorLiveData
 
-    fun callDetailsMovie(){
+    fun callDetailsMovie(id: Int){
 
         viewModelScope.launch {
-            val response= appRepository.getDetailsMovie()
+            val response= appRepository.getDetailsMovie(id)
 
             when(response){
                 is NetworkResponse.Success -> {

@@ -34,7 +34,9 @@ class DetailsFragment : Fragment() {
 
         val movieId= arguments?.getInt("movieID")   //getting that movie Id from Home fragment when any item is clicked
 
-        viewModel.callDetailsMovie()
+        if (movieId != null) {
+            viewModel.callDetailsMovie(movieId)
+        }
 
         viewModel.detailsMovieLiveData.observe(viewLifecycleOwner){data->
             data?.let {
