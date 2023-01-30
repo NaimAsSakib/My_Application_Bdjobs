@@ -57,7 +57,7 @@ class HomeFragment : Fragment() , ItemOnClickListener{
         viewModel.popularMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
                 //Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
-                val programAdapter= HomePopularRCVAdapter(it.results as ArrayList<ResultsItem>)
+                val programAdapter= HomePopularRCVAdapter(it.results as ArrayList<ResultsItem>,this)
                 binding.rcvVerticalHomeFragment.adapter=programAdapter
             }
         }

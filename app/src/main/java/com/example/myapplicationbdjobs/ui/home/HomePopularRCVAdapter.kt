@@ -6,15 +6,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.ResultsItem
+import com.example.myapplicationbdjobs.listener.ItemOnClickListener
 
 
-class HomePopularRCVAdapter(private val results: ArrayList<ResultsItem>) : RecyclerView.Adapter<HomePopularRCVAdapter.MyViewHolder>() {
+class HomePopularRCVAdapter(private val results: ArrayList<ResultsItem>, private val listener: ItemOnClickListener) :
+    RecyclerView.Adapter<HomePopularRCVAdapter.MyViewHolder>() {
 
     class MyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+        val layout: ConstraintLayout= itemView.findViewById(R.id.layoutVerticalHomeFrag)
         val movieImagePopular: ImageView = itemView.findViewById(R.id.ivVerticalMoviePicHomeFrag)
         val tvMovieNamePopular: TextView =itemView.findViewById(R.id.tvVerticalMovieNameHomeFrag)
         val tvRatingPopular: TextView =itemView.findViewById(R.id.tvVerticalRatingHomeFrag)
@@ -44,6 +48,14 @@ class HomePopularRCVAdapter(private val results: ArrayList<ResultsItem>) : Recyc
 
          holder.tvMovieNamePopular.text= item.originalTitle
          holder.tvRatingPopular.text=item.voteAverage.toString()
+
+        holder.layout.setOnClickListener {
+            val movieIdFromPopular= item.id
+
+            if (movieIdFromPopular != null) {
+                listener.onClickListener("movieIdFromPopular", movieIdFromPopular)
+            }
+        }
 
 
     }
