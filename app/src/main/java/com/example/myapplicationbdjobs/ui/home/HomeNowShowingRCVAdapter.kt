@@ -6,15 +6,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.ResultsItem
 import com.example.myapplicationbdjobs.api.models.home.now_showing.ResultsItemNowShowing
+import com.example.myapplicationbdjobs.listener.ItemOnClickListener
 
-class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<ResultsItemNowShowing> ) : RecyclerView.Adapter<HomeNowShowingRCVAdapter.MyViewHolder>() {
+class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<ResultsItemNowShowing> , private val listener: ItemOnClickListener) :
+    RecyclerView.Adapter<HomeNowShowingRCVAdapter.MyViewHolder>() {
 
     class MyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+        val constraintLayout: ConstraintLayout= itemView.findViewById(R.id.layoutHorizontalHomeFrag)
         val movieImageNowShowing: ImageView = itemView.findViewById(R.id.ivHorizontalMoviePicHomeFrag)
         val tvMovieNameNowShowing: TextView = itemView.findViewById(R.id.tvHorizontalMovieNameHomeFrag)
         val tvMovieRatingNowShowing: TextView = itemView.findViewById(R.id.tvHorizontalRatingHomeFrag)
@@ -45,6 +49,12 @@ class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<Results
 
         holder.tvMovieNameNowShowing.text= item.originalTitle
         holder.tvMovieRatingNowShowing.text=item.voteAverage.toString()
+
+        holder.constraintLayout.setOnClickListener {
+            val movieIDFromApi= item.id
+            listener.onClickListener("movieID", movieIDFromApi)
+
+        }
     }
     override fun getItemCount(): Int {
         return resultsNowShowing.size

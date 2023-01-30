@@ -14,12 +14,13 @@ import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.ResultsItem
 import com.example.myapplicationbdjobs.api.models.home.now_showing.ResultsItemNowShowing
 import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
+import com.example.myapplicationbdjobs.listener.ItemOnClickListener
 import com.example.myapplicationbdjobs.ui.MainActivity
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment() , ItemOnClickListener{
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
 
@@ -63,7 +64,7 @@ class HomeFragment : Fragment() {
         viewModel.nowShowingMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
                // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_SHORT).show()
-                val programAdapterNowShowing= HomeNowShowingRCVAdapter(it.results as ArrayList<ResultsItemNowShowing>)
+                val programAdapterNowShowing= HomeNowShowingRCVAdapter(it.results as ArrayList<ResultsItemNowShowing>, this )
                 binding.rcvHorizontalHomeFragment.adapter=programAdapterNowShowing
 
             }
@@ -74,6 +75,10 @@ class HomeFragment : Fragment() {
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             Toast.makeText(context,it, Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onClickListener(name: String?, value: Int?) {
+        Log.e("listener", "value $value")
     }
 
 }
