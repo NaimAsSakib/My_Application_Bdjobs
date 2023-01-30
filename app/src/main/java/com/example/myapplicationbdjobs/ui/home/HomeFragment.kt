@@ -25,8 +25,6 @@ class HomeFragment : Fragment() , ItemOnClickListener{
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
 
-    private var movieID=0   //for passing movie ID got from listener; initial value 0
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

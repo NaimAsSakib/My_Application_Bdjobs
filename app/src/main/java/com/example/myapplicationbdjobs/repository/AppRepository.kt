@@ -8,4 +8,5 @@ class AppRepository @Inject constructor(private val apiService: ApiService) {
 
     suspend fun getNowShowingMovie()=apiService.getNowShowingMovie()
 
+    suspend fun getDetailsMovie()=apiService.getDetailsMovie()
 }

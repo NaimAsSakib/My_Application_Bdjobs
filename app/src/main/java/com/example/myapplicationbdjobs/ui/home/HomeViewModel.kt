@@ -19,13 +19,15 @@ class HomeViewModel @Inject constructor(private val appRepository: AppRepository
     val popularMoviesLiveData: LiveData<PopularResponse?>
         get() = _popularMoviesLiveData
 
+    private val _nowShowingLiveData = MutableLiveData<NowShowingResponse?>()
+    val nowShowingMoviesLiveData: LiveData<NowShowingResponse?>
+        get() = _nowShowingLiveData
+
     private val _errorLiveData = MutableLiveData<String>()
     val errorLiveData: LiveData<String>
         get() = _errorLiveData
 
-    private val _nowShowingLiveData = MutableLiveData<NowShowingResponse?>()
-    val nowShowingMoviesLiveData: LiveData<NowShowingResponse?>
-        get() = _nowShowingLiveData
+
 
     fun callPopularMovies(){
 
