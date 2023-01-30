@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/custom_shape_for_details_fragment"
+        android:elevation="20dp"
         app:layout_constraintTop_toTopOf="@id/guideline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -176,8 +177,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:lineSpacingExtra="10dp"
                 android:text="asdfghjklzxcvbnmertybghghghghghghghghg"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="@id/tvMovieName"
                 app:layout_constraintEnd_toEndOf="@id/ivSaveInBookmarks"

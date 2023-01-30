@@ -22,9 +22,6 @@ class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<Results
         val movieImageNowShowing: ImageView = itemView.findViewById(R.id.ivHorizontalMoviePicHomeFrag)
         val tvMovieNameNowShowing: TextView = itemView.findViewById(R.id.tvHorizontalMovieNameHomeFrag)
         val tvMovieRatingNowShowing: TextView = itemView.findViewById(R.id.tvHorizontalRatingHomeFrag)
-
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

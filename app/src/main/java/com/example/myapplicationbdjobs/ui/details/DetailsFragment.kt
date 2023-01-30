@@ -34,6 +34,7 @@ class DetailsFragment : Fragment() {
 
         val movieId= arguments?.getInt("movieID")   //getting that movie Id from Home fragment when any item is clicked
 
+
         if (movieId != null) {
             viewModel.callDetailsMovie(movieId)
         }
@@ -43,7 +44,7 @@ class DetailsFragment : Fragment() {
                // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
 
                 binding.tvMovieName.text= data.originalTitle
-                binding.tvRatingResult.text=data.voteAverage.toString()
+                binding.tvMovieRatingDetails.text= data.voteAverage.toString()
                 binding.tvLengthTime.text= data.runtime.toString()
                 binding.tvLanguageType.text=data.originalLanguage
 
@@ -57,6 +58,11 @@ class DetailsFragment : Fragment() {
                     .load(image)
                     .error(R.drawable.demo_movie)
                     .into(binding.ivMovieImage)
+
+                //for saving in bookmark
+                binding.ivSaveInBookmarks.setOnClickListener {
+
+                }
 
             }
 
