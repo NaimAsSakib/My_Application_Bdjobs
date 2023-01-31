@@ -24,6 +24,8 @@ class DetailsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModels()
     private var detailsResponse:DetailsResponse?=null
 
+    private val strBuilder= java.lang.StringBuilder()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,6 +61,13 @@ class DetailsFragment : Fragment() {
 
                 binding.descriptionDetailsMsg.text=data.overview
 
+
+                for (i in data.genres!!){
+                    if (i != null) {
+                        strBuilder.append(i.name+",")
+                    }
+                }
+
                 //movie picture load code
                 val imageFirstPart="https://image.tmdb.org/t/p/w500"
                 val imageApiPart=data.posterPath
@@ -79,7 +88,8 @@ class DetailsFragment : Fragment() {
                             originalTitle = it.originalTitle,
                             voteAverage = it.voteAverage.toString(),
                             runtime = it.runtime,
-                            posterPath = it.posterPath
+                            posterPath = it.posterPath,
+                            geners = strBuilder.toString()
                         )
                         viewModel.addBookmarks(appTable)
                         Log.e("msg","msg"+ appTable)
