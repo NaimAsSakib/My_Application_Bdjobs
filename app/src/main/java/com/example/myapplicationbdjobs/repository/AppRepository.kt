@@ -12,6 +12,8 @@ class AppRepository @Inject constructor(private val apiService: ApiService, priv
 
     suspend fun getDetailsMovie(id: Int)=apiService.getDetailsMovie(id)
 
+   // suspend fun getDeilsGeners()=apiService.getDetailsMovieGeners()
+
     suspend fun getDbData()= appDao.getAllScheduleApps()
 
     suspend fun addBookmark(appTable: AppTable)=appDao.addBookmark(appTable)

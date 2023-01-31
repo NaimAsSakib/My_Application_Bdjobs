@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.AppTable
 import com.example.myapplicationbdjobs.api.models.details.DetailsResponse
+import com.example.myapplicationbdjobs.api.models.details.GenresItem
 import com.example.myapplicationbdjobs.databinding.FragmentDetailsBinding
 import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
 import com.example.myapplicationbdjobs.ui.home.HomeViewModel
@@ -79,6 +80,8 @@ class DetailsFragment : Fragment() {
 
 
 
+
+
                 //for saving in bookmark
                 binding.ivSaveInBookmarks.setOnClickListener {view->
                     detailsResponse?.let {
@@ -101,6 +104,17 @@ class DetailsFragment : Fragment() {
             }
 
         }
+
+
+           /* viewModel.callGeners()
+
+        viewModel.detailsMovieLiveDataGeners.observe(viewLifecycleOwner){data->
+            data?.let {
+                val programAdapterForGeners= DetailsGenersAdapter(it.name as ArrayList<GenresItem>)
+                binding.rcvHorizontalDetailsFragment.adapter=programAdapterForGeners
+            }
+
+        }*/
 
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             Toast.makeText(context,it, Toast.LENGTH_LONG).show()

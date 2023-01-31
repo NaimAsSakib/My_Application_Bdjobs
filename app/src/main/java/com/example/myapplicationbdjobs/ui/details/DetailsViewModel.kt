@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplicationbdjobs.api.models.AppTable
 import com.example.myapplicationbdjobs.api.models.details.DetailsResponse
+import com.example.myapplicationbdjobs.api.models.details.GenresItem
 import com.example.myapplicationbdjobs.repository.AppRepository
 import com.google.gson.Gson
 import com.haroldadmin.cnradapter.NetworkResponse
@@ -21,6 +22,10 @@ class DetailsViewModel @Inject constructor(private val appRepository: AppReposit
     private val _detailsMovieLiveData = MutableLiveData<DetailsResponse?>()
     val detailsMovieLiveData: LiveData<DetailsResponse?>
     get()= _detailsMovieLiveData
+
+   /* private val _detailsMovieLiveDataGeners = MutableLiveData<GenresItem?>()
+    val detailsMovieLiveDataGeners: LiveData<GenresItem?>
+        get()= _detailsMovieLiveDataGeners*/
 
     private val _errorLiveData = MutableLiveData<String>()
     val errorLiveData: LiveData<String>
@@ -47,6 +52,29 @@ class DetailsViewModel @Inject constructor(private val appRepository: AppReposit
             }
         }
     }
+
+
+
+      /*   fun callGeners(){
+             viewModelScope.launch {
+                 val response=appRepository.getDeilsGeners()
+
+
+                 when(response){
+                     is NetworkResponse.Success -> {
+
+                         _detailsMovieLiveDataGeners.value=response.body
+                     }
+                     is NetworkResponse.ServerError -> TODO()
+                     is NetworkResponse.NetworkError -> TODO()
+                     is NetworkResponse.UnknownError -> TODO()
+                 }
+             }
+
+    }*/
+
+
+
 
     fun addBookmarks(appTable: AppTable){
         viewModelScope.launch {

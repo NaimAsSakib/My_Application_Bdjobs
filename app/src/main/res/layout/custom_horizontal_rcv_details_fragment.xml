@@ -9,7 +9,7 @@
     android:id="@+id/cardGenresRCVDetailsFragment">
 
     <TextView
-        android:id="@+id/tvHorizontalMovieNameHomeFrag"
+        android:id="@+id/tvHorizontalGenersDetailsFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Spiderman No way home"
