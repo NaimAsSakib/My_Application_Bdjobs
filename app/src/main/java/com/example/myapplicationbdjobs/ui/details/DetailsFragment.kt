@@ -69,6 +69,10 @@ class DetailsFragment : Fragment() {
                     }
                 }
 
+                //recyclerview for showing geners
+                binding.rcvHorizontalDetailsFragment.adapter=DetailsGenersAdapter(it.genres as ArrayList<GenresItem>)
+
+
                 //movie picture load code
                 val imageFirstPart="https://image.tmdb.org/t/p/w500"
                 val imageApiPart=data.posterPath
