@@ -1,8 +1,11 @@
 package com.example.myapplicationbdjobs.di
 
 import android.content.Context
+import androidx.room.Room
 import androidx.viewbinding.BuildConfig
 import com.example.myapplicationbdjobs.api.endpoints.ApiService
+import com.example.myapplicationbdjobs.db.AppDao
+import com.example.myapplicationbdjobs.db.AppDatabase
 import com.example.myapplicationbdjobs.helper.Constants
 import com.example.myapplicationbdjobs.preference.PreferencesHelper
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
@@ -75,6 +78,18 @@ object AppModule {
     @Singleton
     fun providePreference(@ApplicationContext context: Context): PreferencesHelper {
         return PreferencesHelper(context)
+    }
+
+    @Provides
+    @Singleton
+    fun buildDatabase(@ApplicationContext context: Context): AppDatabase{
+        return Room.databaseBuilder(context, AppDatabase::class.java, "app_db").build()
+    }
+
+    @Provides
+    @Singleton
+    fun getAppDao(appDatabase: AppDatabase): AppDao{
+        return appDatabase.getAppDAo()
     }
 
 

@@ -1,12 +1,16 @@
 package com.example.myapplicationbdjobs.ui.details
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplicationbdjobs.api.models.AppTable
 import com.example.myapplicationbdjobs.api.models.details.DetailsResponse
 import com.example.myapplicationbdjobs.repository.AppRepository
+import com.google.gson.Gson
 import com.haroldadmin.cnradapter.NetworkResponse
+import com.squareup.moshi.Json
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,6 +45,27 @@ class DetailsViewModel @Inject constructor(private val appRepository: AppReposit
                     _errorLiveData.value="something went wrong"
                 }
             }
+        }
+    }
+
+    fun addBookmarks(appTable: AppTable){
+        viewModelScope.launch {
+            appRepository.addBookmark(appTable)
+        }
+    }
+
+    fun getDbData(){
+        viewModelScope.launch {
+           val res= appRepository.getDbData()
+            Log.e("ghghghgh","now"+res)
+        }
+    }
+
+    fun check(id: Int){
+        viewModelScope.launch {
+          val res=  appRepository.check(id)
+            Log.e("klklklk","now $res")
+
         }
     }
 

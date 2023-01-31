@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
+import com.example.myapplicationbdjobs.api.models.AppTable
+import com.example.myapplicationbdjobs.api.models.details.DetailsResponse
 import com.example.myapplicationbdjobs.databinding.FragmentDetailsBinding
 import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
 import com.example.myapplicationbdjobs.ui.home.HomeViewModel
@@ -20,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
+    private var detailsResponse:DetailsResponse?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +42,15 @@ class DetailsFragment : Fragment() {
             viewModel.callDetailsMovie(movieId)
         }
 
+        viewModel.getDbData()
+        viewModel.check(movieId?:0)
+
         viewModel.detailsMovieLiveData.observe(viewLifecycleOwner){data->
-            data?.let {
-               // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
+            data?.let {it->
+
+                detailsResponse=it
+
+                // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
 
                 binding.tvMovieName.text= data.originalTitle
                 binding.tvMovieRatingDetails.text= data.voteAverage.toString()
@@ -59,13 +68,36 @@ class DetailsFragment : Fragment() {
                     .error(R.drawable.demo_movie)
                     .into(binding.ivMovieImage)
 
+
+
                 //for saving in bookmark
-                binding.ivSaveInBookmarks.setOnClickListener {
+                binding.ivSaveInBookmarks.setOnClickListener {view->
+                    detailsResponse?.let {
+                        val appTable=AppTable(
+                            id=it.id,
+                            originalLanguage = it.originalLanguage,
+                            originalTitle = it.originalTitle,
+                            voteAverage = it.voteAverage.toString(),
+                            runtime = it.runtime,
+                            posterPath = it.posterPath
+                        )
+                        viewModel.addBookmarks(appTable)
+                        Log.e("msg","msg"+ appTable)
+                    }
 
                 }
+
 
             }
 
         }
+
+        viewModel.errorLiveData.observe(viewLifecycleOwner){
+            Toast.makeText(context,it, Toast.LENGTH_LONG).show()
+        }
+
+
+
+
     }
 }
