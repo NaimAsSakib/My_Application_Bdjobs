@@ -1,13 +1,11 @@
 package com.example.myapplicationbdjobs.ui.details
 
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
@@ -15,11 +13,7 @@ import com.example.myapplicationbdjobs.api.models.AppTable
 import com.example.myapplicationbdjobs.api.models.details.DetailsResponse
 import com.example.myapplicationbdjobs.api.models.details.GenresItem
 import com.example.myapplicationbdjobs.databinding.FragmentDetailsBinding
-import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
-import com.example.myapplicationbdjobs.ui.home.HomeViewModel
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
@@ -42,6 +36,7 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val movieId= arguments?.getInt("movieID")   //getting that movie Id from Home fragment when any item is clicked
 
 
@@ -58,7 +53,10 @@ class DetailsFragment : Fragment() {
 
                 binding.tvMovieName.text= data.originalTitle
                 binding.tvMovieRatingDetails.text= data.voteAverage.toString()
-                binding.tvLengthTime.text= data.runtime.toString()
+
+                val formattedTime= data.runtime?.let { it1 -> minuteToTime(it1) }
+                binding.tvLengthTime.text= formattedTime
+
                 binding.tvLanguageType.text=data.originalLanguage
 
                 binding.descriptionDetailsMsg.text=data.overview
@@ -85,7 +83,6 @@ class DetailsFragment : Fragment() {
 
                 bookmarksIconUpdate(data.isBookmarked)
             }
-
         }
 
         //for saving in bookmark
@@ -118,6 +115,8 @@ class DetailsFragment : Fragment() {
         }
 
     }
+
+
     private fun bookmarksIconUpdate(isBookmark: Boolean){
 
         if (isBookmark){
@@ -125,5 +124,20 @@ class DetailsFragment : Fragment() {
         }else{
             binding.ivSaveInBookmarks.setImageResource(R.drawable.baseline_bookmark_border_24)
         }
+    }
+
+     fun minuteToTime(minute: Int): String? {
+        var minute = minute
+        var hour = minute / 60
+        minute %= 60
+        var p = "AM"
+        if (hour >= 12) {
+            hour %= 12
+            p = "PM"
+        }
+        if (hour == 0) {
+            hour = 12
+        }
+        return (if (hour < 10) "$hour" else hour).toString() + "h " + (if (minute < 10) "$minute" else minute) +"m"
     }
 }

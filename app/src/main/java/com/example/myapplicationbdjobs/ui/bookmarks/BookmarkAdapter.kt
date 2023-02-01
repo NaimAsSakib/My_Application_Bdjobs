@@ -34,7 +34,7 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
 
         holder.tvMovieName.text=item.originalTitle
         holder.tvRating.text=item.voteAverage
-        holder.tvMovieTime.text=item.runtime.toString()
+        holder.tvMovieTime.text= item.runtime?.let { minuteToTime(it) }
 
         val imageFirstPart="https://image.tmdb.org/t/p/w500"
         val imageApiPart=item?.posterPath.toString()
@@ -54,4 +54,18 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
        return arrayList.size
     }
 
+    fun minuteToTime(minute: Int): String? {
+        var minute = minute
+        var hour = minute / 60
+        minute %= 60
+        var p = "AM"
+        if (hour >= 12) {
+            hour %= 12
+            p = "PM"
+        }
+        if (hour == 0) {
+            hour = 12
+        }
+        return (if (hour < 10) "$hour" else hour).toString() + "h " + (if (minute < 10) "$minute" else minute) +"m"
+    }
 }

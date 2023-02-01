@@ -59,4 +59,5 @@ class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<Results
         return resultsNowShowing.size
     }
 
+
 }

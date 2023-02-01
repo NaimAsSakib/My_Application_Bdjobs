@@ -12,6 +12,7 @@ import com.example.myapplicationbdjobs.api.models.AppTable
 import com.example.myapplicationbdjobs.databinding.FragmentBookmarksBinding
 import com.example.myapplicationbdjobs.databinding.FragmentDetailsBinding
 import com.example.myapplicationbdjobs.listener.DeleteListener
+import com.example.myapplicationbdjobs.ui.details.DetailsGenersAdapter
 import com.example.myapplicationbdjobs.ui.details.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
