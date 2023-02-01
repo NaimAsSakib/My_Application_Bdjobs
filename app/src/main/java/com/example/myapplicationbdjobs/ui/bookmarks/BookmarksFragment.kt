@@ -35,9 +35,9 @@ class BookmarksFragment : Fragment(), DeleteListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getDbData()
         viewModel.bookmarkLiveData.observe(viewLifecycleOwner){
 
-            viewModel.getDbData()
             list.clear()
             list.addAll(it)
 

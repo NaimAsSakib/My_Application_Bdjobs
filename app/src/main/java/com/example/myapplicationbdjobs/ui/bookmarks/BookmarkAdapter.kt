@@ -1,0 +1,57 @@
+package com.example.myapplicationbdjobs.ui.bookmarks
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.myapplicationbdjobs.R
+import com.example.myapplicationbdjobs.api.models.AppTable
+import com.example.myapplicationbdjobs.listener.DeleteListener
+
+class BookmarkAdapter (private val arrayList: ArrayList<AppTable>, private val listener: DeleteListener) :
+RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
+
+    class MyViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
+        val ivMovieImage: ImageView= itemView.findViewById(R.id.ivPictureRCvBookmarks)
+        val tvMovieName: TextView= itemView.findViewById(R.id.tvMovieNameBookmarksFrag)
+        val tvRating: TextView= itemView.findViewById(R.id.tvVerticalBookmarksFrag)
+        val tvMovieTime: TextView= itemView.findViewById(R.id.tvMovieTimeVerticalDeleteFrag)
+        val ivDelete: ImageView= itemView.findViewById(R.id.ivDeleteBookMarks)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.custom_vertical_rcv_bookmarks_fragment, parent, false)
+        return BookmarkAdapter.MyViewHolder(itemView)
+    }
+
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val item= arrayList[position]
+
+        holder.tvMovieName.text=item.originalTitle
+        holder.tvRating.text=item.voteAverage
+        holder.tvMovieTime.text=item.runtime.toString()
+
+        val imageFirstPart="https://image.tmdb.org/t/p/w500"
+        val imageApiPart=item?.posterPath.toString()
+        val image= imageFirstPart.trim()+imageApiPart.trim()
+
+        Glide.with(holder.ivMovieImage.context)
+            .load(image)
+            .error(R.drawable.demo_movie)
+            .into(holder.ivMovieImage)
+
+        holder.ivDelete.setOnClickListener {
+            listener.onDelete(item)
+        }
+    }
+
+    override fun getItemCount(): Int {
+       return arrayList.size
+    }
+
+}

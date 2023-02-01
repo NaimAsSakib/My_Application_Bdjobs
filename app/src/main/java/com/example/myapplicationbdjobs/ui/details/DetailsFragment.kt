@@ -19,12 +19,15 @@ import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
 import com.example.myapplicationbdjobs.ui.home.HomeViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
     private var detailsResponse:DetailsResponse?=null
+
+   // private  var isBookmared=false
 
     private val strBuilder= java.lang.StringBuilder()
 
@@ -80,12 +83,10 @@ class DetailsFragment : Fragment() {
                     .error(R.drawable.demo_movie)
                     .into(binding.ivMovieImage)
 
-
                 bookmarksIconUpdate(data.isBookmarked)
             }
 
         }
-
 
         //for saving in bookmark
         binding.ivSaveInBookmarks.setOnClickListener {view->
@@ -101,14 +102,12 @@ class DetailsFragment : Fragment() {
                 )
                // viewModel.addBookmarks(appTable)
 
-
                 if (it.isBookmarked) {
                     viewModel.deleteBookmarks(appTable)
                     bookmarksIconUpdate(false)
                 } else {
                     viewModel.addBookmarks(appTable)
                     bookmarksIconUpdate(true)
-
                 }
             }
 
@@ -120,11 +119,11 @@ class DetailsFragment : Fragment() {
 
     }
     private fun bookmarksIconUpdate(isBookmark: Boolean){
-        if (isBookmark){
-            binding.ivSaveInBookmarks.setImageResource(R.drawable.baseline_bookmark_border_24)
-        }else{
-            binding.ivSaveInBookmarks.visibility=View.GONE
-        }
 
+        if (isBookmark){
+            binding.ivSaveInBookmarks.setImageResource(R.drawable.baseline_bookmark_selected)
+        }else{
+            binding.ivSaveInBookmarks.setImageResource(R.drawable.baseline_bookmark_border_24)
+        }
     }
 }
