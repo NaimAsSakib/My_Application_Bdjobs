@@ -53,8 +53,6 @@ class DetailsFragment : Fragment() {
 
                 detailsResponse=it
 
-                // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
-
                 binding.tvMovieName.text= data.originalTitle
                 binding.tvMovieRatingDetails.text= data.voteAverage.toString()
                 binding.tvLengthTime.text= data.runtime.toString()
