@@ -82,7 +82,7 @@ class DetailsFragment : Fragment() {
                     .load(image)
                     .into(binding.ivMovieImage)
 
-                bookmarksIconUpdate(data.isBookmarked)
+                bookmarksIconUpdate(data.isBookmarked)    //condition for checking isBookmarked value & setting icon accordingly
               //  Log.e("msg","value in observe"+data.isBookmarked)
             }
         }
