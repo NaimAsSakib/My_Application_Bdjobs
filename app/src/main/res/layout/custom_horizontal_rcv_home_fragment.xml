@@ -13,6 +13,7 @@
             android:layout_height="180dp"
             android:src="@drawable/demo_movie"
             android:scaleType="fitXY"
+            android:background="@drawable/custom_shape_bordered_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

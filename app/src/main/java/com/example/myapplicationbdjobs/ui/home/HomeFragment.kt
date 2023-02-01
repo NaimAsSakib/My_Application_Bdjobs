@@ -69,7 +69,6 @@ class HomeFragment : Fragment() , ItemOnClickListener{
                 val programAdapterNowShowing= HomeNowShowingRCVAdapter(it.results as ArrayList<ResultsItemNowShowing>, this )
                 binding.rcvHorizontalHomeFragment.adapter=programAdapterNowShowing
 
-
             }
         }
 
@@ -83,6 +82,4 @@ class HomeFragment : Fragment() , ItemOnClickListener{
         bundle.putInt("movieID",value)
         findNavController().navigate(R.id.action_homeFragment_to_detailsFragment,bundle)
     }
-
-
 }

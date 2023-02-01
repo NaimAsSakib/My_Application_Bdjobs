@@ -78,7 +78,6 @@ class DetailsFragment : Fragment() {
                 val image= imageFirstPart.trim()+imageApiPart
                 Glide.with(binding.tvMovieName.context)
                     .load(image)
-                    .error(R.drawable.demo_movie)
                     .into(binding.ivMovieImage)
 
                 bookmarksIconUpdate(data.isBookmarked)

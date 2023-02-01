@@ -36,7 +36,8 @@ class BookmarksFragment : Fragment(), DeleteListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getDbData()
+
+        viewModel.getDbData()  //getting data from database
         viewModel.bookmarkLiveData.observe(viewLifecycleOwner){
 
             list.clear()
@@ -44,7 +45,6 @@ class BookmarksFragment : Fragment(), DeleteListener {
 
             programAdapter= BookmarkAdapter(list,this)
             binding.rcvBookmarks.adapter=programAdapter
-
         }
     }
 

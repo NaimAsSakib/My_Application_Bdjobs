@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
+    android:background="@drawable/custom_shape_oval_bookmark"
+    android:elevation="40dp"
+    android:padding="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -11,6 +16,7 @@
     android:layout_width="120dp"
     android:layout_height="140dp"
     android:src="@drawable/demo_movie"
+    android:background="@drawable/custom_shape_bordered_image"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"/>
 
@@ -30,10 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
         android:src="@drawable/baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
-        app:layout_constraintStart_toEndOf="@id/tvMovieNameBookmarksFrag"
         app:layout_constraintTop_toTopOf="@id/tvMovieNameBookmarksFrag" />
 
     <ImageView
