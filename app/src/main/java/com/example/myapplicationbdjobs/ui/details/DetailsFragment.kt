@@ -1,6 +1,7 @@
 package com.example.myapplicationbdjobs.ui.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +55,7 @@ class DetailsFragment : Fragment() {
                 binding.tvMovieName.text= data.originalTitle
                 binding.tvMovieRatingDetails.text= data.voteAverage.toString()
 
+                //formatting time
                 val formattedTime= data.runtime?.let { it1 -> minuteToTime(it1) }
                 binding.tvLengthTime.text= formattedTime
 
@@ -81,6 +83,7 @@ class DetailsFragment : Fragment() {
                     .into(binding.ivMovieImage)
 
                 bookmarksIconUpdate(data.isBookmarked)
+                Log.e("msg","value in observe"+data.isBookmarked)
             }
         }
 
@@ -99,6 +102,7 @@ class DetailsFragment : Fragment() {
                // viewModel.addBookmarks(appTable)
 
                 if (it.isBookmarked) {
+                    Log.e("msg","value in icon click "+it.isBookmarked)
                     viewModel.deleteBookmarks(appTable)
                     bookmarksIconUpdate(false)
                 } else {
