@@ -83,7 +83,7 @@ class DetailsFragment : Fragment() {
                     .into(binding.ivMovieImage)
 
                 bookmarksIconUpdate(data.isBookmarked)
-                Log.e("msg","value in observe"+data.isBookmarked)
+              //  Log.e("msg","value in observe"+data.isBookmarked)
             }
         }
 
@@ -102,12 +102,15 @@ class DetailsFragment : Fragment() {
                // viewModel.addBookmarks(appTable)
 
                 if (it.isBookmarked) {
-                    Log.e("msg","value in icon click "+it.isBookmarked)
+                 //   Log.e("msg","value in icon click "+it.isBookmarked)
                     viewModel.deleteBookmarks(appTable)
                     bookmarksIconUpdate(false)
+                    it.isBookmarked=false
                 } else {
                     viewModel.addBookmarks(appTable)
+                  //  Log.e("msg","value in icon click 2  "+it.isBookmarked)
                     bookmarksIconUpdate(true)
+                    it.isBookmarked=true
                 }
             }
 
