@@ -1,5 +1,6 @@
 package com.example.myapplicationbdjobs.ui.details
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -45,7 +46,6 @@ class DetailsFragment : Fragment() {
             viewModel.callDetailsMovie(movieId)
         }
 
-        viewModel.getDbData()
         viewModel.check(movieId?:0)
 
         viewModel.detailsMovieLiveData.observe(viewLifecycleOwner){data->
@@ -81,49 +81,50 @@ class DetailsFragment : Fragment() {
                     .into(binding.ivMovieImage)
 
 
-
-
-
-                //for saving in bookmark
-                binding.ivSaveInBookmarks.setOnClickListener {view->
-                    detailsResponse?.let {
-                        val appTable=AppTable(
-                            id=it.id,
-                            originalLanguage = it.originalLanguage,
-                            originalTitle = it.originalTitle,
-                            voteAverage = it.voteAverage.toString(),
-                            runtime = it.runtime,
-                            posterPath = it.posterPath,
-                            geners = strBuilder.toString()
-                        )
-                        viewModel.addBookmarks(appTable)
-                        Log.e("msg","msg"+ appTable)
-                    }
-
-                }
-
-
+                bookmarksIconUpdate(data.isBookmarked)
             }
 
         }
 
 
-           /* viewModel.callGeners()
+        //for saving in bookmark
+        binding.ivSaveInBookmarks.setOnClickListener {view->
+            detailsResponse?.let {
+                val appTable = AppTable(
+                    id = it.id,
+                    originalLanguage = it.originalLanguage,
+                    originalTitle = it.originalTitle,
+                    voteAverage = it.voteAverage.toString(),
+                    runtime = it.runtime,
+                    posterPath = it.posterPath,
+                    geners = strBuilder.toString()
+                )
+               // viewModel.addBookmarks(appTable)
 
-        viewModel.detailsMovieLiveDataGeners.observe(viewLifecycleOwner){data->
-            data?.let {
-                val programAdapterForGeners= DetailsGenersAdapter(it.name as ArrayList<GenresItem>)
-                binding.rcvHorizontalDetailsFragment.adapter=programAdapterForGeners
+
+                if (it.isBookmarked) {
+                    viewModel.deleteBookmarks(appTable)
+                    bookmarksIconUpdate(false)
+                } else {
+                    viewModel.addBookmarks(appTable)
+                    bookmarksIconUpdate(true)
+
+                }
             }
 
-        }*/
+        }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             Toast.makeText(context,it, Toast.LENGTH_LONG).show()
         }
 
-
-
+    }
+    private fun bookmarksIconUpdate(isBookmark: Boolean){
+        if (isBookmark){
+            binding.ivSaveInBookmarks.setImageResource(R.drawable.baseline_bookmark_border_24)
+        }else{
+            binding.ivSaveInBookmarks.visibility=View.GONE
+        }
 
     }
 }

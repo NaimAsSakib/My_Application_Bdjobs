@@ -12,12 +12,12 @@ class AppRepository @Inject constructor(private val apiService: ApiService, priv
 
     suspend fun getDetailsMovie(id: Int)=apiService.getDetailsMovie(id)
 
-   // suspend fun getDeilsGeners()=apiService.getDetailsMovieGeners()
-
     suspend fun getDbData()= appDao.getAllScheduleApps()
 
     suspend fun addBookmark(appTable: AppTable)=appDao.addBookmark(appTable)
 
     suspend fun check(id: Int)= appDao.checkIfExit(id)
+
+    suspend fun deleteBookmark(appTable: AppTable)=appDao.deleteBookmark(appTable)
 
 }

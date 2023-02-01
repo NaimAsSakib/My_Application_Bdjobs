@@ -89,7 +89,7 @@
         android:src="@drawable/clock_movie_time"/>
 
     <TextView
-        android:id="@+id/tvMovieTimeVerticalHomeFrag"
+        android:id="@+id/tvMovieTimeVerticalDeleteFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"

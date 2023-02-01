@@ -23,10 +23,6 @@ class DetailsViewModel @Inject constructor(private val appRepository: AppReposit
     val detailsMovieLiveData: LiveData<DetailsResponse?>
     get()= _detailsMovieLiveData
 
-   /* private val _detailsMovieLiveDataGeners = MutableLiveData<GenresItem?>()
-    val detailsMovieLiveDataGeners: LiveData<GenresItem?>
-        get()= _detailsMovieLiveDataGeners*/
-
     private val _errorLiveData = MutableLiveData<String>()
     val errorLiveData: LiveData<String>
         get() = _errorLiveData
@@ -38,7 +34,9 @@ class DetailsViewModel @Inject constructor(private val appRepository: AppReposit
 
             when(response){
                 is NetworkResponse.Success -> {
-                    _detailsMovieLiveData.value= response.body
+                    val output=response.body
+                    output.isBookmarked=appRepository.check(id)
+                    _detailsMovieLiveData.value=output
                 }
                 is NetworkResponse.ServerError -> {
                     _errorLiveData.value= response.body?.statusMessage ?:("something went wrong")
@@ -54,46 +52,28 @@ class DetailsViewModel @Inject constructor(private val appRepository: AppReposit
     }
 
 
-
-      /*   fun callGeners(){
-             viewModelScope.launch {
-                 val response=appRepository.getDeilsGeners()
-
-
-                 when(response){
-                     is NetworkResponse.Success -> {
-
-                         _detailsMovieLiveDataGeners.value=response.body
-                     }
-                     is NetworkResponse.ServerError -> TODO()
-                     is NetworkResponse.NetworkError -> TODO()
-                     is NetworkResponse.UnknownError -> TODO()
-                 }
-             }
-
-    }*/
-
-
-
-
     fun addBookmarks(appTable: AppTable){
         viewModelScope.launch {
             appRepository.addBookmark(appTable)
         }
     }
 
-    fun getDbData(){
+   /* fun getDbData(){
         viewModelScope.launch {
            val res= appRepository.getDbData()
-            Log.e("ghghghgh","now"+res)
         }
-    }
+    }*/
 
     fun check(id: Int){
         viewModelScope.launch {
           val res=  appRepository.check(id)
-            Log.e("klklklk","now $res")
 
+        }
+    }
+
+    fun deleteBookmarks(appTable: AppTable){
+        viewModelScope.launch {
+            appRepository.deleteBookmark(appTable)
         }
     }
 

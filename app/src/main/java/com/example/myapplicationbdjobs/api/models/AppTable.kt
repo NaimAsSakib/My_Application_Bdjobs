@@ -31,5 +31,4 @@ data class AppTable(
     @ColumnInfo(name = "geners")
     val geners: String?= null
 
-
     )
