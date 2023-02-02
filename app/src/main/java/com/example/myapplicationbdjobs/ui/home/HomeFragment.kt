@@ -40,7 +40,7 @@ class HomeFragment : Fragment() , ItemOnClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // loadingProgressBarDialog= LoadingProgressBarDialog(context as Activity)
+        loadingProgressBarDialog= LoadingProgressBarDialog(requireActivity())
 
         navigation()
     }
@@ -60,11 +60,11 @@ class HomeFragment : Fragment() , ItemOnClickListener{
 
         viewModel.callPopularMovies()
 
+        loadingProgressBarDialog.startProgressBarLoading()
+
         viewModel.popularMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
                 //Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
-
-
 
                 val programAdapter= HomePopularRCVAdapter(it.results as ArrayList<ResultsItem>,this)
                 binding.rcvVerticalHomeFragment.adapter=programAdapter
@@ -72,17 +72,23 @@ class HomeFragment : Fragment() , ItemOnClickListener{
 
             }
         }
+        loadingProgressBarDialog.dismissProgressBarDialog()
+
 
         viewModel.callNowShowingMovies()
+
+        loadingProgressBarDialog.startProgressBarLoading()
+
         viewModel.nowShowingMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
+
                // Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_SHORT).show()
                 val programAdapterNowShowing= HomeNowShowingRCVAdapter(it.results as ArrayList<ResultsItemNowShowing>, this )
                 binding.rcvHorizontalHomeFragment.adapter=programAdapterNowShowing
 
             }
         }
-
+        loadingProgressBarDialog.dismissProgressBarDialog()
 
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             Toast.makeText(context,it, Toast.LENGTH_LONG).show()

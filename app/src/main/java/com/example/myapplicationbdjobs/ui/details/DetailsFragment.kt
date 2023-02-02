@@ -14,6 +14,7 @@ import com.example.myapplicationbdjobs.api.models.AppTable
 import com.example.myapplicationbdjobs.api.models.details.DetailsResponse
 import com.example.myapplicationbdjobs.api.models.details.GenresItem
 import com.example.myapplicationbdjobs.databinding.FragmentDetailsBinding
+import com.example.myapplicationbdjobs.helper.LoadingProgressBarDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +27,8 @@ class DetailsFragment : Fragment() {
 
     private val strBuilder= java.lang.StringBuilder()
 
+    private lateinit var loadingProgressBarDialog: LoadingProgressBarDialog
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +40,7 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loadingProgressBarDialog= LoadingProgressBarDialog(requireActivity())
 
         val movieId= arguments?.getInt("movieID")   //getting that movie Id from Home fragment when any item is clicked
 
@@ -46,6 +50,8 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.check(movieId?:0)
+
+        loadingProgressBarDialog.startProgressBarLoading()
 
         viewModel.detailsMovieLiveData.observe(viewLifecycleOwner){data->
             data?.let {it->
@@ -84,8 +90,12 @@ class DetailsFragment : Fragment() {
 
                 bookmarksIconUpdate(data.isBookmarked)    //condition for checking isBookmarked value & setting icon accordingly
               //  Log.e("msg","value in observe"+data.isBookmarked)
+
+                loadingProgressBarDialog.dismissProgressBarDialog()
+
             }
         }
+
 
         //for saving in bookmark
         binding.ivSaveInBookmarks.setOnClickListener {view->
