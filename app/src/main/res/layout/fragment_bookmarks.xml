@@ -9,14 +9,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvBookmarks"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="15dp"
         tools:listitem="@layout/custom_vertical_rcv_bookmarks_fragment"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
