@@ -38,6 +38,7 @@ class BookmarksFragment : Fragment(), DeleteListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getDbData()  //getting data from database
+
         viewModel.bookmarkLiveData.observe(viewLifecycleOwner){
 
             list.clear()

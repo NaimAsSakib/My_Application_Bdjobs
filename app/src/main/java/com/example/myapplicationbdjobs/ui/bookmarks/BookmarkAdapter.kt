@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.AppTable
+import com.example.myapplicationbdjobs.api.models.details.GenresItem
 import com.example.myapplicationbdjobs.listener.DeleteListener
 
 class BookmarkAdapter (private val arrayList: ArrayList<AppTable>, private val listener: DeleteListener) :
@@ -20,6 +21,10 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
         val tvRating: TextView= itemView.findViewById(R.id.tvVerticalBookmarksFrag)
         val tvMovieTime: TextView= itemView.findViewById(R.id.tvMovieTimeVerticalDeleteFrag)
         val ivDelete: ImageView= itemView.findViewById(R.id.ivDeleteBookMarks)
+
+        private val strBuilder= java.lang.StringBuilder()
+        val rcvNestedAdapterGeners: RecyclerView=itemView.findViewById(R.id.rcvHorizontalBookmarksFragment)
+        lateinit var geners : List<String>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -48,6 +53,12 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
         holder.ivDelete.setOnClickListener {
             listener.onDelete(item)
         }
+
+        holder.geners= item.geners?.split(",")!!
+
+
+        val bookmarkGenersAdapter= BookmarksGenersAdapter(holder.geners as List<String>)
+        holder.rcvNestedAdapterGeners.adapter=bookmarkGenersAdapter
     }
 
     override fun getItemCount(): Int {

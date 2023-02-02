@@ -23,9 +23,7 @@ class DetailsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModels()
     private var detailsResponse:DetailsResponse?=null
 
-   // private  var isBookmared=false
-
-    private val strBuilder= java.lang.StringBuilder()
+    private val strBuilder= java.lang.StringBuilder()  //for splitting geners
 
     private lateinit var loadingProgressBarDialog: LoadingProgressBarDialog
 
@@ -96,7 +94,6 @@ class DetailsFragment : Fragment() {
             }
         }
 
-
         //for saving in bookmark
         binding.ivSaveInBookmarks.setOnClickListener {view->
             detailsResponse?.let {
@@ -107,7 +104,7 @@ class DetailsFragment : Fragment() {
                     voteAverage = it.voteAverage.toString(),
                     runtime = it.runtime,
                     posterPath = it.posterPath,
-                    geners = strBuilder.toString()
+                    geners = strBuilder.toString().substring(0,strBuilder.length-1)
                 )
                // viewModel.addBookmarks(appTable)
 
