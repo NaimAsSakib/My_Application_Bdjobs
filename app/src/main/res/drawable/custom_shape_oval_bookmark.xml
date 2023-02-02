@@ -12,7 +12,7 @@
         android:bottomRightRadius="40dp">
     </corners>
 
-    <solid android:color="#f5f5f5">
+    <solid android:color="@color/white">
 
     </solid>
 </shape>
