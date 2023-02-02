@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.AppTable
-import com.example.myapplicationbdjobs.api.models.details.GenresItem
+import com.example.myapplicationbdjobs.helper.Helper
 import com.example.myapplicationbdjobs.listener.DeleteListener
 
 class BookmarkAdapter (private val arrayList: ArrayList<AppTable>, private val listener: DeleteListener) :
@@ -38,7 +38,8 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
 
         holder.tvMovieName.text=item.originalTitle
         holder.tvRating.text=item.voteAverage
-        holder.tvMovieTime.text= item.runtime?.let { minuteToTime(it) }
+        //Converting movie run time from minutes to hour & minute with companion obj (static method) from helper class
+        holder.tvMovieTime.text= item.runtime?.let { Helper.minuteToTime(it) }
 
         val imageFirstPart="https://image.tmdb.org/t/p/w500"
         val imageApiPart=item?.posterPath.toString()
@@ -61,20 +62,5 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
 
     override fun getItemCount(): Int {
        return arrayList.size
-    }
-
-    fun minuteToTime(minute: Int): String? {
-        var minute = minute
-        var hour = minute / 60
-        minute %= 60
-        var p = "AM"
-        if (hour >= 12) {
-            hour %= 12
-            p = "PM"
-        }
-        if (hour == 0) {
-            hour = 12
-        }
-        return (if (hour < 10) "$hour" else hour).toString() + "h " + (if (minute < 10) "$minute" else minute) +"m"
     }
 }
