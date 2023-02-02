@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationbdjobs.R
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class BookmarksGenersAdapter (private val genersList:List<String>): RecyclerView.Adapter<BookmarksGenersAdapter.MyViewHolder>(){
     class MyViewHolder (itemView:View): RecyclerView.ViewHolder(itemView) {
@@ -20,9 +21,7 @@ class BookmarksGenersAdapter (private val genersList:List<String>): RecyclerView
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item= genersList[position]
-
-        if(!item.isEmpty())
-        holder.tvGeners.text=item.toString()
+        holder.tvGeners.text=item
     }
 
     override fun getItemCount(): Int {

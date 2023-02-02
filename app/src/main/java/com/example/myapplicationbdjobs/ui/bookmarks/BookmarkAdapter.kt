@@ -22,9 +22,8 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
         val tvMovieTime: TextView= itemView.findViewById(R.id.tvMovieTimeVerticalDeleteFrag)
         val ivDelete: ImageView= itemView.findViewById(R.id.ivDeleteBookMarks)
 
-        private val strBuilder= java.lang.StringBuilder()
         val rcvNestedAdapterGeners: RecyclerView=itemView.findViewById(R.id.rcvHorizontalBookmarksFragment)
-        lateinit var geners : List<String>
+        lateinit var genersList : List<String>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -54,10 +53,9 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
             listener.onDelete(item)
         }
 
-        holder.geners= item.geners?.split(",")!!
+        holder.genersList= item.geners?.split(",")!!  //splitting that geners & keeping in arrayList
 
-
-        val bookmarkGenersAdapter= BookmarksGenersAdapter(holder.geners as List<String>)
+        val bookmarkGenersAdapter= BookmarksGenersAdapter(holder.genersList)
         holder.rcvNestedAdapterGeners.adapter=bookmarkGenersAdapter
     }
 
