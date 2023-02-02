@@ -32,5 +32,4 @@ class BookmarkViewModel @Inject constructor(private val appRepository: AppReposi
         }
     }
 
-
 }
