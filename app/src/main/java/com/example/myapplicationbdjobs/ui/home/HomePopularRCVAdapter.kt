@@ -43,7 +43,7 @@ class HomePopularRCVAdapter(private val results: ArrayList<ResultsItem>, private
 
          Glide.with(holder.movieImagePopular.context)
              .load(image)
-             .error(R.drawable.demo_movie)
+             //.error(R.drawable.demo_movie)
              .into(holder.movieImagePopular)
 
          holder.tvMovieNamePopular.text= item.originalTitle

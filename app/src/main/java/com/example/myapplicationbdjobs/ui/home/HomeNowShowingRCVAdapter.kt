@@ -41,7 +41,7 @@ class HomeNowShowingRCVAdapter (private val resultsNowShowing: ArrayList<Results
 
         Glide.with(holder.movieImageNowShowing.context)
             .load(image)
-            .error(R.drawable.demo_movie)
+            //.error(R.drawable.demo_movie)
             .into(holder.movieImageNowShowing)
 
         holder.tvMovieNameNowShowing.text= item.originalTitle

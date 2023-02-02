@@ -1,5 +1,6 @@
 package com.example.myapplicationbdjobs.ui.home
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.example.myapplicationbdjobs.R
 import com.example.myapplicationbdjobs.api.models.ResultsItem
 import com.example.myapplicationbdjobs.api.models.home.now_showing.ResultsItemNowShowing
 import com.example.myapplicationbdjobs.databinding.FragmentHomeBinding
+import com.example.myapplicationbdjobs.helper.LoadingProgressBarDialog
 import com.example.myapplicationbdjobs.listener.ItemOnClickListener
 import com.example.myapplicationbdjobs.ui.MainActivity
 import com.google.gson.Gson
@@ -25,6 +27,8 @@ class HomeFragment : Fragment() , ItemOnClickListener{
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
 
+    private lateinit var loadingProgressBarDialog: LoadingProgressBarDialog
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +39,8 @@ class HomeFragment : Fragment() , ItemOnClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+       // loadingProgressBarDialog= LoadingProgressBarDialog(context as Activity)
 
         navigation()
     }
@@ -57,8 +63,13 @@ class HomeFragment : Fragment() , ItemOnClickListener{
         viewModel.popularMoviesLiveData.observe(viewLifecycleOwner){data->
             data?.let {
                 //Toast.makeText(context, Gson().toJson(it), Toast.LENGTH_LONG).show()
+
+
+
                 val programAdapter= HomePopularRCVAdapter(it.results as ArrayList<ResultsItem>,this)
                 binding.rcvVerticalHomeFragment.adapter=programAdapter
+
+
             }
         }
 
@@ -71,6 +82,7 @@ class HomeFragment : Fragment() , ItemOnClickListener{
 
             }
         }
+
 
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             Toast.makeText(context,it, Toast.LENGTH_LONG).show()

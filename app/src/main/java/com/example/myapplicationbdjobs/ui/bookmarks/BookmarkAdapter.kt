@@ -42,7 +42,7 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
 
         Glide.with(holder.ivMovieImage.context)
             .load(image)
-            .error(R.drawable.demo_movie)
+           // .error(R.drawable.demo_movie)
             .into(holder.ivMovieImage)
 
         holder.ivDelete.setOnClickListener {
