@@ -1,15 +1,11 @@
 package com.example.myapplicationbdjobs.ui.details
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -100,21 +96,6 @@ class DetailsFragment : Fragment() {
 
         //for saving in bookmark
         binding.ivSaveInBookmarks.setOnClickListener {view->
-
-            val builder= AlertDialog.Builder(requireContext())
-            val view= layoutInflater.inflate(R.layout.alert_dialog_deleteorsave_bookmark, null)
-
-            builder.setView(view)
-            val dialog=builder.create()
-
-            //codes
-
-            if (dialog.window != null){
-                dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
-            }
-            dialog.show()
-
-
 
 
             detailsResponse?.let {
