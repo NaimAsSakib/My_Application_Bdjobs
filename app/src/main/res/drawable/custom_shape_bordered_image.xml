@@ -6,10 +6,10 @@
         android:height="100dp"/>
 
     <corners
-        android:topRightRadius="20dp"
-        android:topLeftRadius="20dp"
-        android:bottomLeftRadius="20dp"
-        android:bottomRightRadius="20dp">
+        android:topRightRadius="40dp"
+        android:topLeftRadius="40dp"
+        android:bottomLeftRadius="40dp"
+        android:bottomRightRadius="40dp">
 
     </corners>
 
