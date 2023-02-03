@@ -1,10 +1,14 @@
 package com.example.myapplicationbdjobs.ui.bookmarks
 
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplicationbdjobs.R
@@ -51,7 +55,27 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
             .into(holder.ivMovieImage)
 
         holder.ivDelete.setOnClickListener {
-            listener.onDelete(item)
+
+            //Showing alertdialog if user want to delete movie from bookmark or not. If yes, then sending command through listener to delete from appTable
+            val builder= AlertDialog.Builder(holder.ivDelete.context)
+            val view= LayoutInflater.from(holder.ivDelete.context).inflate(R.layout.alert_dialog_deleteorsave_bookmark, null)
+            builder.setView(view)
+            val dialog=builder.create()
+
+            view.findViewById<TextView>(R.id.tvAlertDialogYes).setOnClickListener {
+                listener.onDelete(item)   //sending command through listener to delete from appTable
+
+                dialog.dismiss()
+            }
+
+            view.findViewById<TextView>(R.id.tvAlertDialogNo).setOnClickListener {
+                dialog.dismiss()
+            }
+            if (dialog.window != null){
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+            }
+            dialog.show()
+
         }
 
         holder.genersList= item.geners?.split(",")!!  //splitting that geners & keeping in arrayList

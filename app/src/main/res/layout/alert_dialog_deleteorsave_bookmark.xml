@@ -7,11 +7,13 @@
 
     <TextView
         android:id="@+id/tvAlertDialog1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="24sp"
         android:textColor="@color/black"
         android:text="Do you want to delete from bookmark?"
+        android:lineSpacingExtra="2dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -20,7 +22,7 @@
         android:id="@+id/tvAlertDialogYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="34sp"
         android:textColor="@color/black"
         android:text=" Yes "
         android:layout_marginTop="20dp"
@@ -34,7 +36,7 @@
         android:id="@+id/tvAlertDialogNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="34sp"
         android:textColor="@color/black"
         android:text=" No "
         android:layout_marginTop="20dp"
