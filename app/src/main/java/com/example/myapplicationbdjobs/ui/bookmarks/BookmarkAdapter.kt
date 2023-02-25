@@ -78,8 +78,11 @@ RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>(){
 
         }
 
+
+        //splitting geners with comma
         holder.genersList= item.geners?.split(",")!!  //splitting that geners & keeping in arrayList
 
+        //setting child RCV adapter here
         val bookmarkGenersAdapter= BookmarksGenersAdapter(holder.genersList)
         holder.rcvNestedAdapterGeners.adapter=bookmarkGenersAdapter
     }
